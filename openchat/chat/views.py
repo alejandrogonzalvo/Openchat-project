@@ -24,16 +24,22 @@ def conversation_list(request):
 
 def message_list(request, conversation):
 
-    form = MessageForm(request.POST)
-    if form.is_valid():
-        new_message = Message.objects.create(
-            text=form.cleaned_data['text'],
-            conversation=Conversation.objects.get(name=conversation),
-            author=request.user,
-        )
-        new_message.save()
+    messages = reversed(Message.objects.filter(conversation=conversation))
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            new_message = Message.objects.create(
+                text=form.cleaned_data['text'],
+                conversation=Conversation.objects.get(name=conversation),
+                author=request.user,
+            )
+            new_message.save()
 
-    messages = Message.objects.filter(conversation=conversation)
+        form = MessageForm()
+        return HttpResponseRedirect("")
+
+    else:
+        form = MessageForm()
 
     return render(
         request,

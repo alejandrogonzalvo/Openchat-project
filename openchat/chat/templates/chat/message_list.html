@@ -34,11 +34,10 @@
     {% endif%}
 
     <form method="POST">
+        <div class = "new_message">
         {% csrf_token %}
         {% for field in form %}
-            <div class = "new_message">
-                {{ field }}
-            
+            {{ field }}
         {% endfor %}
         <input type="submit" class="button" value="Send">
         </div>
