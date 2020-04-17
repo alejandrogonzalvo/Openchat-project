@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'chat/conversation_list.css' %}">
+    <title>Conversations</title>
+</head>
+<body>
+    <div class="list_of_conversations">
+        {% if conversations %}
+            <ul>
+                {% for conversation in conversations %}
+                <li><a href="{% url 'chat:message_list' conversation %}">{{ conversation.name }}</a></li>
+                {% endfor %}
+            </ul>
+    </div>
+    {% else %}
+        <p>You haven't started any conversations yet!</p>
+    {% endif%}
+    <button type="button"><a href="conversations/create-conversation">Create Conversation</a></button>
+
+</body>
+</html>

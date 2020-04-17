@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Openchat</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Capriola' rel='stylesheet'>
+
+    {% load static %}
+    <link rel='stylesheet' type='text/css' href="{% static 'chat/login.css' %}">
+</head>
+<body>
+    <h1 class="Title">Openchat</h1>
+    <form method="POST">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <p>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                {% if field.help_text %}
+                    <small>{{field.help_text}}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </p>
+        {% endfor %}<br><br>
+        
+       
+        <input type="submit" class="button" id="submit" value="Login">
+        <button type="button" class="button"><a href="signup">Sign up</a></button>
+    </form>
+        
+    
+</body>
+</html>

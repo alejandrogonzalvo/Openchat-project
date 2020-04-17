@@ -1,0 +1,109 @@
+*{
+    background-color: rgb(17, 17, 17);
+    font-family: 'Calligraffitti';
+}
+
+.Title{
+    text-align: center;
+
+    font-size: 8em;
+    font-weight: bold;
+    color: crimson;
+    text-shadow: 8px 0px rgb(83, 7, 23);
+
+    letter-spacing: 0.05em;
+
+    margin-top: 7%;
+    margin-bottom: 8%;
+}
+
+form{
+    text-align: center;
+}
+
+label{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.7em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    color: rgb(250, 54, 94);
+
+    text-shadow: 8px 4px rgb(105, 10, 31);
+
+    
+}
+
+#id_username, #id_password{
+    font-size: 1.3em;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: whitesmoke;
+    text-align: center;
+
+    text-shadow: 5px 0px rgb(99, 11, 11);
+
+    border: 2px solid crimson;
+    border-radius: 6px;
+
+    width: 300px;
+    padding: 5px 20px;
+    margin: 8px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    font-size: 1.5em;
+    font-family: 'Capriola';
+    font-weight: 400;
+    color: whitesmoke;
+    text-align: center;
+
+    border: 0.2em solid crimson;
+    border-radius: 1em;
+    border-bottom-right-radius: 2em;
+    border-top-left-radius: 0em;
+
+    padding: 8px;
+    padding-right: 16px;
+
+    background-color: crimson;
+
+    margin-right: 1em;
+}
+
+input[type=submit]:hover {
+    background-color: rgb(148, 13, 40);
+    border-color: rgb(148, 13, 40);
+}
+
+::selection{
+    background: rgb(255, 155, 175);
+    color: rgb(151, 0, 30);
+}
+
+button{
+    text-align: center;
+
+    border: 0.2em solid crimson;
+    border-radius: 1em;
+    border-bottom-left-radius: 2.5em;
+    border-top-right-radius: 0em;
+
+    padding: 8px;
+    padding-right: 16px;
+    padding-left: 16px;
+
+    background-color: crimson;
+    margin-left: 1em;
+}
+
+a{
+    font-size: 1.85em;
+    font-family: 'Capriola';
+    font-weight: 400;
+    color: whitesmoke;
+    text-align: center;
+    text-decoration: none;
+    background-color: crimson;
+}

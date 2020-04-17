@@ -1,0 +1,40 @@
+body{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+
+    background-color: rgb(17, 17, 17);
+
+    color: whitesmoke;
+}
+
+
+li a{
+    color: whitesmoke;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+
+    border: 0.2em solid crimson;
+    border-radius: 1em;
+    border-bottom-right-radius: 2em;
+    border-top-left-radius: 0em;
+
+    padding: 0.3em;
+    padding-right: 0.5em;
+
+}
+
+a:hover{
+    color: rgb(217, 172, 255);
+}
+
+ul{
+    list-style-type: none;
+}
+
+.list_of_conversations {
+    margin-left: 2em;
+
+    line-height: 3em;
+
+    font-size: 3em;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'chat/message_list.css' %}">
+
+    <title>Conversation</title>
+
+</head>
+<body>   
+        {% if messages %}
+            <ul class="message_list">
+                {% for message in messages %}
+                {% if message.author == user %}
+            <div class="message-mine">
+                <li>
+                    <p class="message_text">{{message.text}}</p><p class="message_info">{{message.date}}, by {{message.author}}</p>                 
+                </li>
+            </div>
+
+                    
+                {% else %}
+                <div class="message-other">
+                <li>
+                   <p class="message_text">{{message.text}}</p><p class="message_info">{{message.date}}, by {{message.author}}</p>
+                </li>
+               </div>
+                {% endif %}
+                {% endfor %}
+            </ul>
+
+    {% else %}
+        <p class="no_messages">You haven't sent any messages yet!</p>
+    {% endif%}
+</body>
+</html>

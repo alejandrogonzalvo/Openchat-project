@@ -1,0 +1,73 @@
+body{
+    background-color: rgb(17, 17, 17);
+    
+    font-family: 'Courier New', Courier, monospace;
+    color: crimson;
+    text-align: left;
+
+    margin-top: 5em;
+    margin-left: 5em;
+}
+
+.Title{
+    font-family: 'Calligraffitti';
+    font-size: 3.5em;
+    font-weight: bolder;
+    text-shadow: 8px 0px rgb(83, 7, 23);
+
+}
+
+label{
+    font-size: 1.7em;
+    font-weight: 600;
+
+    color: rgb(250, 54, 94);
+
+    text-shadow: 8px 4px rgb(105, 10, 31);
+}
+
+input{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: whitesmoke;
+
+    background-color: crimson;
+
+    border-style: solid;
+    border-color: rgb(122, 18, 39);
+    border-radius: 1em;
+
+    text-align: center;
+
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+
+input[type=submit] {
+    font-size: 1.5em;
+    font-family: 'Capriola';
+    font-weight: 400;
+    color: whitesmoke;
+    text-align: center;
+
+    border: 0.2em solid crimson;
+    border-radius: 1em;
+    border-bottom-right-radius: 2em;
+    border-top-left-radius: 0em;
+
+    padding: 8px;
+    padding-right: 16px;
+
+    background-color: crimson;
+
+    margin-top: 1em;
+}
+
+small{
+    font-weight: 900;
+}
+

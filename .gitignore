@@ -1,0 +1,5 @@
+/env
+/openchat/*.code-workspace
+/openchat/chat/migrations
+*.pyc
+/.vscode

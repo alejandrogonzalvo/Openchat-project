@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Openchat</title>
+
+    {% load static %}
+    <link rel='stylesheet' type='text/css' href="{% static 'chat/create_conversation.css' %}">
+</head>
+<body>
+    <h2>Create conversation</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <p>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                {% if field.help_text %}
+                    <small>{{field.help_text}}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </p>
+        {% endfor %}
+        <input type="submit" class="button" value="Create">
+    </form>
+    
+</body>
+</html>
