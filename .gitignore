@@ -3,3 +3,4 @@
 /openchat/chat/migrations
 *.pyc
 /.vscode
+*.code-workspace
