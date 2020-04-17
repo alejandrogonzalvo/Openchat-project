@@ -32,5 +32,18 @@
     {% else %}
         <p class="no_messages">You haven't sent any messages yet!</p>
     {% endif%}
+
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class = "new_message">
+                {{ field }}
+            
+        {% endfor %}
+        <input type="submit" class="button" value="Send">
+        </div>
+    </form>
+
+
 </body>
 </html>

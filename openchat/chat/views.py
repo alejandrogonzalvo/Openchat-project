@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
 from .models import Message, Conversation
-from .forms import ConversationForm
+from .forms import ConversationForm, MessageForm
 
 
 def conversation_list(request):
@@ -23,11 +23,26 @@ def conversation_list(request):
 
 
 def message_list(request, conversation):
+
+    form = MessageForm(request.POST)
+    if form.is_valid():
+        new_message = Message.objects.create(
+            text=form.cleaned_data['text'],
+            conversation=Conversation.objects.get(name=conversation),
+            author=request.user,
+        )
+        new_message.save()
+
     messages = Message.objects.filter(conversation=conversation)
+
     return render(
         request,
         'chat/message_list.html',
-        {'messages': messages, 'user': request.user},
+        {
+            'messages': messages,
+            'user': request.user,
+            'form': form,
+            },
         )
 
 
