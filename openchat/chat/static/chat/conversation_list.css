@@ -6,10 +6,13 @@ body{
     color: whitesmoke;
 }
 
-
-li a{
+a{
     color: whitesmoke;
     text-decoration: none;
+}
+
+li a{
+    
     font-weight: 600;
     letter-spacing: 0.15em;
 
@@ -37,4 +40,24 @@ ul{
     line-height: 3em;
 
     font-size: 3em;
+}
+
+.button{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2em;
+    font-weight: bold;
+    color: whitesmoke;
+    text-align: center;
+
+    border: 0.2em solid rgb(240, 5, 52);
+    border-radius: 1em;
+    border-bottom-right-radius: 2em;
+    border-top-left-radius: 0em;
+
+    background-color: rgb(240, 5, 52);
+}
+
+.button:hover{
+    background-color: rgb(148, 13, 40);
+    border-color: rgb(148, 13, 40);
 }

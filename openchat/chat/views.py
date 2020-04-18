@@ -1,29 +1,34 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth import authenticate, login as do_login
+from django.contrib.auth import authenticate, login as do_login, logout as do_logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 
 from .models import Message, Conversation
 from .forms import ConversationForm, MessageForm
 
 
+@login_required
 def conversation_list(request):
-    if request.user.is_authenticated:
-        conversations = Conversation.objects.filter(
-            users=request.user
-            )
+    conversations = Conversation.objects.filter(
+        users=request.user
+        )
+    messages = {}
+
+    for conversation in conversations:
+        messages[conversation.name] = Message.objects.filter(
+            conversation = conversation
+        )[:5]
         return render(
             request,
             'chat/conversation_list.html',
-            {'conversations': conversations}
+            {'conversations': conversations},
+            {'messages': messages},
             )
 
-    return HttpResponseRedirect('')
-
-
+@login_required
 def message_list(request, conversation):
-
     messages = reversed(Message.objects.filter(conversation=conversation))
     if request.method == 'POST':
         form = MessageForm(request.POST)
@@ -53,23 +58,26 @@ def message_list(request, conversation):
 
 
 def login(request):
-
-    if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-
-        form.is_valid()
-        username = form.cleaned_data['username']
-        password = form.cleaned_data['password']
-
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            do_login(request, user)
-            return HttpResponseRedirect('conversations')
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('conversations')
 
     else:
-        form = AuthenticationForm()
+        if request.method == 'POST':
+            form = AuthenticationForm(data=request.POST)
 
-    return render(request, 'chat/login.html', {'form': form})
+            form.is_valid()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                do_login(request, user)
+                return HttpResponseRedirect('conversations')
+
+        else:
+            form = AuthenticationForm()
+
+        return render(request, 'chat/login.html', {'form': form})
 
 
 def signup(request):
@@ -87,7 +95,7 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'chat/signup.html', {'form': form})
 
-
+@login_required
 def create_conversation(request):
     if request.method == 'POST':
         form = ConversationForm(request.POST)
@@ -105,3 +113,8 @@ def create_conversation(request):
     else:
         form = ConversationForm(request.POST)
     return render(request, 'chat/create_conversation.html', {'form': form})
+
+
+def logout(request):
+    do_logout(request)
+    return HttpResponseRedirect("/chat/")

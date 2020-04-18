@@ -11,14 +11,18 @@
         {% if conversations %}
             <ul>
                 {% for conversation in conversations %}
-                <li><a href="{% url 'chat:message_list' conversation %}">{{ conversation.name }}</a></li>
+                    <li><a href="{% url 'chat:message_list' conversation %}">{{ conversation.name }}</a></li>
+                    <ul>
+                        {{ messages|get_item:conversation.name }}
+                    </ul>
                 {% endfor %}
             </ul>
     </div>
     {% else %}
         <p>You haven't started any conversations yet!</p>
     {% endif%}
-    <button type="button"><a href="conversations/create-conversation">Create Conversation</a></button>
+    <button class="button"><a href="conversations/create-conversation">Create Conversation</a></button>
+    <button class="button"><a href="/chat/logout">Logout</a></button>
 
 </body>
 </html>
