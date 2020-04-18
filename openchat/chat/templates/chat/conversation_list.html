@@ -12,9 +12,10 @@
             <ul>
                 {% for conversation in conversations %}
                     <li><a href="{% url 'chat:message_list' conversation %}">{{ conversation.name }}</a></li>
-                    <ul>
-                        {{ messages|get_item:conversation.name }}
-                    </ul>
+                    <p>
+                        {% load filters %}
+                        {{ messages|messages_by_conversation:conversation }}
+                    </p>
                 {% endfor %}
             </ul>
     </div>
