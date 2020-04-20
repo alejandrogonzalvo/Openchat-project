@@ -2,7 +2,6 @@
 <html>
 <head>
     {% load static %}
-
     <link rel="stylesheet" type="text/css" href="{% static 'chat/conversation_list.css' %}">
     <title>Conversations</title>
 </head>
@@ -12,8 +11,8 @@
             <ul id="conversation_list">
                 {% for conversation in conversations %}
                     <li id="conversation">
-                        <a href="{% url 'chat:message_list' conversation %}">{{ conversation.name }}</a>
-                        <ul>
+                        <a href="{% url 'chat:message_list' conversation %}" id="conversation_link">{{ conversation.name }}</a>
+                        <ul id="message_list">
                             {% load filters %}
                             {% for message in messages|messages_by_conversation:conversation %}
                                 <li id="message">{{message}}</li>

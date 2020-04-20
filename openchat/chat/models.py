@@ -33,12 +33,16 @@ class Message(models.Model):
 
     def __str__(self):
         if len(self.text) <= 20:
-            return "{} // sent {}".format(
+            return "{} // sent {}:{}, by {}".format(
                 self.text,
-                self.date
+                self.date.hour,
+                self.date.minute,
+                self.author,
                 )
 
-        return "{}... // sent {}".format(
+        return "{}... // sent {}:{}, by {}".format(
             self.text[:20],
-            self.date
+            self.date.hour,
+            self.date.minute,
+            self.author,
             )
