@@ -9,13 +9,17 @@
 <body>
     <div class="list_of_conversations">
         {% if conversations %}
-            <ul>
+            <ul id="conversation_list">
                 {% for conversation in conversations %}
-                    <li><a href="{% url 'chat:message_list' conversation %}">{{ conversation.name }}</a></li>
-                    <p>
-                        {% load filters %}
-                        {{ messages|messages_by_conversation:conversation }}
-                    </p>
+                    <li id="conversation">
+                        <a href="{% url 'chat:message_list' conversation %}">{{ conversation.name }}</a>
+                        <ul>
+                            {% load filters %}
+                            {% for message in messages|messages_by_conversation:conversation %}
+                                <li id="message">{{message}}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
                 {% endfor %}
             </ul>
     </div>

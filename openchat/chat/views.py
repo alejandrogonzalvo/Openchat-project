@@ -14,18 +14,17 @@ def conversation_list(request):
     conversations = Conversation.objects.filter(
         users=request.user
         )
-    messages = []
 
+    messages = {}
     for conversation in conversations:
-        messages.append(Message.objects.filter(
-            conversation = conversation
-        ).order_by('-date')[:1])
-        return render(
-            request,
-            'chat/conversation_list.html',
-            {'conversations': conversations},
-            {'messages': messages},
-            )
+        messages[conversation.name] = Message.objects.filter(
+            conversation=conversation).order_by('-date')[:5]
+
+    return render(
+        request,
+        'chat/conversation_list.html',
+        {'conversations': conversations, 'messages': messages},
+        )
 
 @login_required
 def message_list(request, conversation):
